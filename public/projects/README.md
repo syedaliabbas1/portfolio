@@ -1,0 +1,47 @@
+# Project Images Directory
+
+This directory contains all images for the portfolio projects displayed on the website.
+
+## Required Images
+
+Each project needs 3 images for the carousel. Add your images with these exact filenames:
+
+### Sapiens Nova Academy
+- `sapiens-nova-1.png`
+- `sapiens-nova-2.png`
+- `sapiens-nova-3.png`
+
+### HP AI Document Understanding
+- `hp-rag-1.png`
+- `hp-rag-2.png`
+- `hp-rag-3.png`
+
+### Autonomous Robotics Systems
+- `robotics-1.png`
+- `robotics-2.png`
+- `robotics-3.png`
+
+### ML Computer Vision Systems
+- `ml-vision-1.png`
+- `ml-vision-2.png`
+- `ml-vision-3.png`
+
+## Image Guidelines
+
+- **Format**: PNG or JPG (PNG recommended for quality)
+- **Aspect Ratio**: 2:3 (portrait orientation)
+- **Recommended Size**: 800x1200px or higher for retina displays
+- **File Size**: Keep under 500KB for optimal loading performance
+- **Content**: Screenshots, diagrams, or visual representations of the project
+
+## Adding Images
+
+1. Place your images in this directory with the exact filenames listed above
+2. The website will automatically display them in the project carousel
+3. Images will be displayed in numerical order (1, 2, 3)
+
+## Notes
+
+- All images must be placed directly in the `/public/projects/` directory
+- The filenames are case-sensitive
+- If an image is missing, a placeholder will be shown

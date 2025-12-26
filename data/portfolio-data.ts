@@ -81,6 +81,8 @@ export const projects: Project[] = [
     github: "#",
     carousel: [
       { image: "/projects/hp-rag-1.png" },
+      { image: "/projects/hp-rag-2.png" },
+      { image: "/projects/hp-rag-3.png" },
     ],
     featured: true,
     dateRange: "2024",
@@ -102,6 +104,8 @@ export const projects: Project[] = [
     github: "#",
     carousel: [
       { image: "/projects/robotics-1.png" },
+      { image: "/projects/robotics-2.png" },
+      { image: "/projects/robotics-3.png" },
     ],
     featured: true,
     dateRange: "2023-2024",
@@ -123,6 +127,8 @@ export const projects: Project[] = [
     github: "#",
     carousel: [
       { image: "/projects/ml-vision-1.png" },
+      { image: "/projects/ml-vision-2.png" },
+      { image: "/projects/ml-vision-3.png" },
     ],
     featured: true,
     dateRange: "2023",

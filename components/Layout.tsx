@@ -10,8 +10,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Layout() {
   const { scrollY } = useScroll();
+  const [documentHeight, setDocumentHeight] = React.useState(0);
 
-  const documentHeight = document.documentElement.scrollHeight;
+  React.useEffect(() => {
+    setDocumentHeight(document.documentElement.scrollHeight);
+  }, []);
 
   return (
     <div className="min-h-screen ">

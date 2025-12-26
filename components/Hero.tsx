@@ -23,7 +23,7 @@ export default function Hero() {
       </div>
 
       {/* Marquee Section */}
-      <TechMarquee logoHeight={48} gap={64} />
+      <TechMarquee logoHeight={48} gap={80} />
 
       {/* Bio Section */}
       <Bio

@@ -7,11 +7,17 @@ interface TechMarqueeProps {
   gap?: number;
 }
 
+interface Logo {
+  name: string;
+  svg: React.ReactNode;
+  scale?: number;
+}
+
 export default function TechMarquee({
   logoHeight = 48,
   gap = 64
 }: TechMarqueeProps) {
-  const logos = [
+  const logos: Logo[] = [
     {
       name: "Vercel",
       svg: (
@@ -121,6 +127,7 @@ export default function TechMarquee({
     },
     {
       name: "React",
+      scale: 1.8,
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +143,7 @@ export default function TechMarquee({
     },
     {
       name: "Python",
+      scale: 2.2,
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +159,7 @@ export default function TechMarquee({
     },
     {
       name: "Node.js",
+      scale: 1.6,
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -165,6 +174,7 @@ export default function TechMarquee({
     },
     {
       name: "AWS",
+      scale: 2.5,
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -181,6 +191,7 @@ export default function TechMarquee({
     },
     {
       name: "Java",
+      scale: 1.5,
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -201,6 +212,7 @@ export default function TechMarquee({
     },
     {
       name: "MongoDB",
+      scale: 1.8,
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -218,6 +230,7 @@ export default function TechMarquee({
     },
     {
       name: "Haskell",
+      scale: 1.3,
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -243,7 +256,17 @@ export default function TechMarquee({
           style={{ gap: `${gap}px` }}
         >
           {logos.map((logo, index) => (
-            <div key={`logo-1-${index}`} className="flex-shrink-0">
+            <div
+              key={`logo-1-${index}`}
+              className="flex-shrink-0"
+              style={{
+                transform: logo.scale ? `scale(${logo.scale})` : undefined,
+                transformOrigin: 'center',
+                paddingLeft: logo.scale ? `${(logo.scale - 1) * 32}px` : undefined,
+                paddingRight: logo.scale ? `${(logo.scale - 1) * 32}px` : undefined,
+                marginRight: index === logos.length - 1 ? `${gap}px` : undefined,
+              }}
+            >
               {logo.svg}
             </div>
           ))}
@@ -254,7 +277,17 @@ export default function TechMarquee({
           style={{ gap: `${gap}px` }}
         >
           {logos.map((logo, index) => (
-            <div key={`logo-2-${index}`} className="flex-shrink-0">
+            <div
+              key={`logo-2-${index}`}
+              className="flex-shrink-0"
+              style={{
+                transform: logo.scale ? `scale(${logo.scale})` : undefined,
+                transformOrigin: 'center',
+                paddingLeft: logo.scale ? `${(logo.scale - 1) * 32}px` : undefined,
+                paddingRight: logo.scale ? `${(logo.scale - 1) * 32}px` : undefined,
+                marginRight: index === logos.length - 1 ? `${gap}px` : undefined,
+              }}
+            >
               {logo.svg}
             </div>
           ))}

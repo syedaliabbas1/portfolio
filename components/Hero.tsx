@@ -1,180 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-
-const projects = [
-  {
-    name: "Soulmates",
-    description: " A Soulbound Token (SBT) issuance engine, built on FEVM.",
-    stack:
-      "Soulmates is built with Next.js, TailwindCSS, Filecoin Virtual Machine SDK, various smart contracts.",
-    badges: [
-      {
-        name: "Hackathon Grand Prize Winner",
-      },
-      {
-        name: "Next.js",
-      },
-      {
-        name: "TailwindCSS",
-      },
-      {
-        name: "Filecoin Virtual Machine SDK",
-      },
-      {
-        name: "Vercel",
-      },
-      {
-        name: "Front End Developer",
-      },
-    ],
-    link: "https://ethglobal.com/showcase/soulmates-wveqg",
-    github: "https://github.com/rohanagarwal/hack-fevm-submission",
-    carousel: [
-      {
-        image: "/soulmates.png",
-      },
-      {
-        image:
-          "https://storage.googleapis.com/ethglobal-api-production/projects%2Fwveqg%2Fimages%2FScreen%20Shot%202022-11-20%20at%2011.43.33%20AM.png",
-      },
-      {
-        image:
-          "https://storage.googleapis.com/ethglobal-api-production/projects%2Fwveqg%2Fimages%2FScreen%20Shot%202022-11-20%20at%2011.44.25%20AM.png",
-      },
-      {
-        image:
-          "https://storage.googleapis.com/ethglobal-api-production/projects%2Fwveqg%2Fimages%2FScreen%20Shot%202022-11-20%20at%2011.44.45%20AM.png",
-      },
-    ],
-  },
-  {
-    name: "MovieGPT",
-    description: "An AI Movie Recommender",
-    stack:
-      "MovieGPT is built with Next.js, TailwindCSS, OpenAI API, and Vercel Edge Functions.",
-    badges: [
-      {
-        name: "Next.js",
-      },
-      {
-        name: "TailwindCSS",
-      },
-      {
-        name: "OpenAI API",
-      },
-      {
-        name: "Vercel Edge Functions + Deploy",
-      },
-    ],
-    link: "https://moviegpt.vercel.app/",
-    github: "https://github.com/chrisabdo/moviegpt",
-    carousel: [
-      {
-        image:
-          "https://pbs.twimg.com/media/FjlPDiJWAAEBVK-?format=jpg&name=large",
-      },
-      {
-        image:
-          "https://pbs.twimg.com/media/FjlPDiIWYAENHT6?format=jpg&name=large",
-      },
-      {
-        image:
-          "https://pbs.twimg.com/media/FjlPDiKXEAAYnEc?format=jpg&name=large",
-      },
-      {
-        image:
-          "https://pbs.twimg.com/media/FjlPDiGXwAE5Tai?format=jpg&name=large",
-      },
-      {
-        image:
-          "https://pbs.twimg.com/media/FjZqb62XEAoVS3M?format=jpg&name=large",
-      },
-    ],
-  },
-  {
-    name: "Etherwav",
-    description: "A Community Driven Web3 Radio",
-    stack:
-      "Etherwav is built with Next.js, TailwindCSS, Web3, and various smart contracts.",
-    badges: [
-      {
-        name: "Next.js",
-      },
-      {
-        name: "TailwindCSS",
-      },
-      {
-        name: "Ethers",
-      },
-      {
-        name: "ThirdWeb",
-      },
-      {
-        name: "RadixUI / @shadcn",
-      },
-      {
-        name: "Vercel",
-      },
-    ],
-    link: "https://etherwav-1.vercel.app/",
-    github: "https://github.com/chrisabdo/etherwav-radix-v2",
-    carousel: [
-      {
-        image: "/etherwav.jpeg",
-      },
-      {
-        image: "/etherwav2.jpeg",
-      },
-      {
-        image: "/etherwav3.jpeg",
-      },
-    ],
-  },
-
-  {
-    name: "DeStemr",
-    description: "A Decentralized music NFT marketplace for stems",
-    stack:
-      "DeStemr is built with Next.js, TailwindCSS, Web3, and various smart contracts.",
-    badges: [
-      {
-        name: "Next.js",
-      },
-      {
-        name: "TailwindCSS",
-      },
-      {
-        name: "Ethers",
-      },
-      {
-        name: "Vercel",
-      },
-      {
-        name: "Truffle",
-      },
-      {
-        name: "Solidity",
-      },
-    ],
-    link: "https://ethglobal.com/showcase/destemr-y5mw7",
-    github: "https://github.com/ChrisAbdo/ETH-SF-DeStemr",
-    carousel: [
-      {
-        image:
-          "https://storage.googleapis.com/ethglobal-api-production/projects%2Fy5mw7%2Fimages%2Fimage_2022-11-05_233311822.png",
-      },
-      {
-        image:
-          "https://storage.googleapis.com/ethglobal-api-production/projects%2Fy5mw7%2Fimages%2Fimage_2022-11-05_233326750.png",
-      },
-      {
-        image:
-          "https://storage.googleapis.com/ethglobal-api-production/projects%2Fy5mw7%2Fimages%2Fimage_2022-11-05_233340316.png",
-      },
-    ],
-  },
-];
+import { projects, hero } from "@/data/portfolio-data";
 
 export default function Hero() {
   return (
@@ -184,11 +11,10 @@ export default function Hero() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <p className="text-base font-semibold leading-7 text-[#999]">
-              Hello there! ☻
+              Hello there!
             </p>
             <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              I&apos;m Chris Abdo, a Full Stack Developer focusing in Web3 and
-              AI.
+              I&apos;m Syed Ali Abbas, a Computer Science student at UCL
             </h2>
           </div>
         </div>
@@ -226,10 +52,10 @@ export default function Hero() {
                 fill="#555"
               ></path>
               <path
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 d="M80.907 79.339L17.0151 0H0V79.3059H13.6121V16.9516L63.8067 79.339H80.907Z"
                 fill="#555"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               ></path>
               <path
                 d="M333.607 78.8546C332.61 78.8546 331.762 78.5093 331.052 77.8186C330.342 77.1279 329.991 76.2917 330 75.3011C329.991 74.3377 330.342 73.5106 331.052 72.8199C331.762 72.1292 332.61 71.7838 333.607 71.7838C334.566 71.7838 335.405 72.1292 336.115 72.8199C336.835 73.5106 337.194 74.3377 337.204 75.3011C337.194 75.9554 337.028 76.5552 336.696 77.0914C336.355 77.6368 335.922 78.064 335.377 78.373C334.842 78.6911 334.252 78.8546 333.607 78.8546Z"
@@ -260,8 +86,8 @@ export default function Hero() {
                   y1="32%"
                   y2="67.556%"
                 >
-                  <stop offset="0%" stop-color="#555" />
-                  <stop offset="100%" stop-color="#555" />
+                  <stop offset="0%" stopColor="#555" />
+                  <stop offset="100%" stopColor="#555" />
                 </linearGradient>
               </defs>
               <path
@@ -314,10 +140,10 @@ export default function Hero() {
                 fill="#555"
               ></path>
               <path
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 d="M80.907 79.339L17.0151 0H0V79.3059H13.6121V16.9516L63.8067 79.339H80.907Z"
                 fill="#555"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               ></path>
               <path
                 d="M333.607 78.8546C332.61 78.8546 331.762 78.5093 331.052 77.8186C330.342 77.1279 329.991 76.2917 330 75.3011C329.991 74.3377 330.342 73.5106 331.052 72.8199C331.762 72.1292 332.61 71.7838 333.607 71.7838C334.566 71.7838 335.405 72.1292 336.115 72.8199C336.835 73.5106 337.194 74.3377 337.204 75.3011C337.194 75.9554 337.028 76.5552 336.696 77.0914C336.355 77.6368 335.922 78.064 335.377 78.373C334.842 78.6911 334.252 78.8546 333.607 78.8546Z"
@@ -348,8 +174,8 @@ export default function Hero() {
                   y1="32%"
                   y2="67.556%"
                 >
-                  <stop offset="0%" stop-color="#555" />
-                  <stop offset="100%" stop-color="#555" />
+                  <stop offset="0%" stopColor="#555" />
+                  <stop offset="100%" stopColor="#555" />
                 </linearGradient>
               </defs>
               <path
@@ -382,13 +208,13 @@ export default function Hero() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <p className="text-base font-semibold leading-7 text-[#999]">
-              2021-2023
+              2023-2024
             </p>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-4xl">
-              Project Selection
+              Featured Projects
             </h2>
             <p className="mt-3 text-lg text-gray-300">
-              Here are some of my favorite projects I&apos;ve worked on.
+              Flagship projects spanning AI systems, robotics, and full-stack development.
             </p>
           </div>
         </div>
@@ -433,9 +259,9 @@ export default function Hero() {
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M14 5l7 7m0 0l-7 7m7-7H3"
                             ></path>
                           </svg>
@@ -449,9 +275,9 @@ export default function Hero() {
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M14 5l7 7m0 0l-7 7m7-7H3"
                             ></path>
                           </svg>
@@ -476,9 +302,9 @@ export default function Hero() {
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           >
                             <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
                             <path d="M9 18c-4.51 2-5-2-7-2"></path>
@@ -492,9 +318,9 @@ export default function Hero() {
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           >
                             <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
                             <path d="M9 18c-4.51 2-5-2-7-2"></path>

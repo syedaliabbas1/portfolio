@@ -2,15 +2,18 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import GithubSVG from "@/public/github.svg";
+import { personalInfo } from "@/data/portfolio-data";
 
 export default function NavLinks() {
   let [hoveredIndex, setHoveredIndex] = useState(null);
 
-  return [
-    ["Twitter", "https://twitter.com/abdo_eth"],
-    ["GitHub", "https://www.github.com/chrisabdo"],
-    ["LinkedIn", "https://www.linkedin.com/in/christopher-abdo"],
-  ].map(([label, href], index) => (
+  const navLinks = [
+    ["GitHub", personalInfo.social.github],
+    ["LinkedIn", personalInfo.social.linkedin],
+    ["Email", `mailto:${personalInfo.email}`],
+  ];
+
+  return navLinks.map(([label, href], index) => (
     <Link
       key={label}
       href={href}

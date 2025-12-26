@@ -17,14 +17,14 @@ export default function Hero() {
               Hello there!
             </p>
             <div className="relative mt-2">
-              <h2 className="invisible text-4xl font-bold tracking-tight sm:text-6xl leading-[5rem]">
-                I&apos;m Syed Ali Abbas, a Computer Science student at UCL
+              <h2 className="invisible text-4xl font-bold tracking-tight sm:text-6xl leading-[5rem] whitespace-pre-wrap">
+                {"I'm Syed Ali Abbas, a\nComputer Science\nstudent at UCL"}
               </h2>
               <TypingAnimation
                 as="h2"
-                className="absolute inset-0 text-4xl font-bold tracking-tight text-white sm:text-6xl"
+                className="absolute inset-0 text-4xl font-bold tracking-tight text-white sm:text-6xl whitespace-pre-wrap"
               >
-                I&apos;m Syed Ali Abbas, a Computer Science student at UCL
+                {"I'm Syed Ali Abbas, a\nComputer Science\nstudent at UCL"}
               </TypingAnimation>
             </div>
           </div>

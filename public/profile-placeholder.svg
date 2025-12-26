@@ -1,0 +1,16 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#1a1a1a" rx="40"/>
+
+  <!-- User Icon -->
+  <g transform="translate(200, 200)">
+    <!-- Head -->
+    <circle cx="0" cy="-30" r="45" fill="#333" stroke="#666" stroke-width="3"/>
+
+    <!-- Body -->
+    <path d="M -70 80 Q -70 20, -45 10 L 45 10 Q 70 20, 70 80 Z" fill="#333" stroke="#666" stroke-width="3"/>
+  </g>
+
+  <!-- Text -->
+  <text x="200" y="360" font-family="Arial, sans-serif" font-size="18" fill="#666" text-anchor="middle">Add Your Photo Here</text>
+</svg>

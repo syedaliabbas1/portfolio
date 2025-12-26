@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import { projects, hero } from "@/data/portfolio-data";
+import { projects, hero, personalInfo } from "@/data/portfolio-data";
+import Bio from "@/components/Bio";
 
 export default function Hero() {
   return (
@@ -199,6 +200,15 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Bio Section */}
+      <Bio
+        name={personalInfo.name}
+        title={personalInfo.title}
+        tagline={personalInfo.tagline}
+        intro={hero.intro}
+        imageSrc="/profile-placeholder.svg"
+      />
 
       {/* Projects Selection Section */}
       <div

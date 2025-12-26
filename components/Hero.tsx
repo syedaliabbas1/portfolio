@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { projects, hero, personalInfo } from "@/data/portfolio-data";
 import Bio from "@/components/Bio";
+import { TypingAnimation } from "@/components/ui/typing-animation";
 import TechMarquee from "@/components/sections/TechMarquee";
 
 export default function Hero() {
@@ -15,9 +16,17 @@ export default function Hero() {
             <p className="text-base font-semibold leading-7 text-[#999]">
               Hello there!
             </p>
-            <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              I&apos;m Syed Ali Abbas, a Computer Science student at UCL
-            </h2>
+            <div className="relative mt-2">
+              <h2 className="invisible text-4xl font-bold tracking-tight sm:text-6xl leading-[5rem]">
+                I&apos;m Syed Ali Abbas, a Computer Science student at UCL
+              </h2>
+              <TypingAnimation
+                as="h2"
+                className="absolute inset-0 text-4xl font-bold tracking-tight text-white sm:text-6xl"
+              >
+                I&apos;m Syed Ali Abbas, a Computer Science student at UCL
+              </TypingAnimation>
+            </div>
           </div>
         </div>
       </div>

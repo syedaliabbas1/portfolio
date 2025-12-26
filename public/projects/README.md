@@ -2,29 +2,33 @@
 
 This directory contains all images for the portfolio projects displayed on the website.
 
+## Current Status
+
+SVG placeholders are currently in use. Replace them with your actual project screenshots.
+
 ## Required Images
 
 Each project needs 3 images for the carousel. Add your images with these exact filenames:
 
 ### Sapiens Nova Academy
-- `sapiens-nova-1.png`
-- `sapiens-nova-2.png`
-- `sapiens-nova-3.png`
+- `sapiens-nova-1.svg` (or `.png` - update data file accordingly)
+- `sapiens-nova-2.svg`
+- `sapiens-nova-3.svg`
 
 ### HP AI Document Understanding
-- `hp-rag-1.png`
-- `hp-rag-2.png`
-- `hp-rag-3.png`
+- `hp-rag-1.svg` (or `.png` - update data file accordingly)
+- `hp-rag-2.svg`
+- `hp-rag-3.svg`
 
 ### Autonomous Robotics Systems
-- `robotics-1.png`
-- `robotics-2.png`
-- `robotics-3.png`
+- `robotics-1.svg` (or `.png` - update data file accordingly)
+- `robotics-2.svg`
+- `robotics-3.svg`
 
 ### ML Computer Vision Systems
-- `ml-vision-1.png`
-- `ml-vision-2.png`
-- `ml-vision-3.png`
+- `ml-vision-1.svg` (or `.png` - update data file accordingly)
+- `ml-vision-2.svg`
+- `ml-vision-3.svg`
 
 ## Image Guidelines
 

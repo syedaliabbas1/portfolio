@@ -1,0 +1,5 @@
+<svg width="800" height="1200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="1200" fill="#1a1a1a"/>
+  <text x="400" y="580" font-family="Arial, sans-serif" font-size="32" fill="#666" text-anchor="middle">Project Image Placeholder</text>
+  <text x="400" y="640" font-family="Arial, sans-serif" font-size="24" fill="#999" text-anchor="middle">Add your image here</text>
+</svg>

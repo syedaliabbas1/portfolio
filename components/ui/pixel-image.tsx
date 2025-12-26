@@ -38,6 +38,8 @@ export const PixelImage = ({
 }: PixelImageProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const [showColor, setShowColor] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   const MIN_GRID = 1
   const MAX_GRID = 16
@@ -60,12 +62,22 @@ export const PixelImage = ({
   }, [customGrid, grid])
 
   useEffect(() => {
+    setIsMounted(true)
     setIsVisible(true)
     const colorTimeout = setTimeout(() => {
       setShowColor(true)
     }, colorRevealDelay)
-    return () => clearTimeout(colorTimeout)
-  }, [colorRevealDelay])
+
+    // Set animation complete after all animations finish
+    const completeTimeout = setTimeout(() => {
+      setAnimationComplete(true)
+    }, maxAnimationDelay + pixelFadeInDuration + colorRevealDelay + 500)
+
+    return () => {
+      clearTimeout(colorTimeout)
+      clearTimeout(completeTimeout)
+    }
+  }, [colorRevealDelay, maxAnimationDelay, pixelFadeInDuration])
 
   const pieces = useMemo(() => {
     const total = rows * cols
@@ -73,52 +85,71 @@ export const PixelImage = ({
       const row = Math.floor(index / cols)
       const col = index % cols
 
+      // Add overlap to prevent visible grid lines
+      const overlap = 0.5
       const clipPath = `polygon(
-        ${col * (100 / cols)}% ${row * (100 / rows)}%,
-        ${(col + 1) * (100 / cols)}% ${row * (100 / rows)}%,
-        ${(col + 1) * (100 / cols)}% ${(row + 1) * (100 / rows)}%,
-        ${col * (100 / cols)}% ${(row + 1) * (100 / rows)}%
+        ${Math.max(0, col * (100 / cols) - overlap)}% ${Math.max(0, row * (100 / rows) - overlap)}%,
+        ${Math.min(100, (col + 1) * (100 / cols) + overlap)}% ${Math.max(0, row * (100 / rows) - overlap)}%,
+        ${Math.min(100, (col + 1) * (100 / cols) + overlap)}% ${Math.min(100, (row + 1) * (100 / rows) + overlap)}%,
+        ${Math.max(0, col * (100 / cols) - overlap)}% ${Math.min(100, (row + 1) * (100 / rows) + overlap)}%
       )`
 
-      const delay = Math.random() * maxAnimationDelay
+      const delay = isMounted ? Math.random() * maxAnimationDelay : 0
       return {
         clipPath,
         delay,
       }
     })
-  }, [rows, cols, maxAnimationDelay])
+  }, [rows, cols, maxAnimationDelay, isMounted])
 
   return (
     <div className="relative h-72 w-72 select-none md:h-96 md:w-96">
-      {pieces.map((piece, index) => (
-        <div
-          key={index}
-          className={cn(
-            "absolute inset-0 transition-all ease-out",
-            isVisible ? "opacity-100" : "opacity-0"
-          )}
-          style={{
-            clipPath: piece.clipPath,
-            transitionDelay: `${piece.delay}ms`,
-            transitionDuration: `${pixelFadeInDuration}ms`,
-          }}
-        >
-          <img
-            src={src}
-            alt={`Pixel image piece ${index + 1}`}
+      {/* Pixelated pieces - only visible during animation */}
+      <div className={cn(
+        "absolute inset-0 transition-opacity duration-500",
+        animationComplete ? "opacity-0 pointer-events-none" : "opacity-100"
+      )}>
+        {pieces.map((piece, index) => (
+          <div
+            key={index}
             className={cn(
-              "z-1 rounded-[2.5rem] object-cover",
-              grayscaleAnimation && (showColor ? "grayscale-0" : "grayscale")
+              "absolute inset-0 transition-all ease-out",
+              isVisible ? "opacity-100" : "opacity-0"
             )}
             style={{
-              transition: grayscaleAnimation
-                ? `filter ${pixelFadeInDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`
-                : "none",
+              clipPath: piece.clipPath,
+              transitionDelay: `${piece.delay}ms`,
+              transitionDuration: `${pixelFadeInDuration}ms`,
             }}
-            draggable={false}
-          />
-        </div>
-      ))}
+          >
+            <img
+              src={src}
+              alt={`Pixel image piece ${index + 1}`}
+              className={cn(
+                "z-1 rounded-[2.5rem] object-cover h-full w-full",
+                grayscaleAnimation && (showColor ? "grayscale-0" : "grayscale")
+              )}
+              style={{
+                transition: grayscaleAnimation
+                  ? `filter ${pixelFadeInDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`
+                  : "none",
+              }}
+              draggable={false}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Clean final image - fades in after animation */}
+      <img
+        src={src}
+        alt="Profile"
+        className={cn(
+          "absolute inset-0 h-full w-full rounded-[2.5rem] object-cover transition-opacity duration-500",
+          animationComplete ? "opacity-100 z-10" : "opacity-0 z-0"
+        )}
+        draggable={false}
+      />
     </div>
   )
 }

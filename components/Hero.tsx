@@ -207,7 +207,7 @@ export default function Hero() {
         title={personalInfo.title}
         tagline={personalInfo.tagline}
         intro={hero.intro}
-        imageSrc="/profile-placeholder.svg"
+        imageSrc="/profile-picture.png"
       />
 
       {/* Projects Selection Section */}

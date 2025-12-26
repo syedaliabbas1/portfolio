@@ -1,14 +1,14 @@
 export const personalInfo = {
   name: "Syed Ali Abbas",
   title: "MEng Computer Science at UCL",
-  email: "syed.ali.abbas@ucl.ac.uk",
+  email: "syedaliabbas1124@gmail.com",
   location: "London, UK",
   tagline: "Computer Science | AI Systems | Robotics | Applied ML",
   oneLineIdentity: "Computer Science MEng student at UCL specialising in AI systems, applied machine learning, and robotics — building production-grade platforms that bridge research and real-world deployment.",
   social: {
-    github: "https://github.com/syedaliabbaas",
-    linkedin: "https://linkedin.com/in/syedaliabbaas",
-    twitter: "https://twitter.com/syedaliabbaas",
+    github: "https://github.com/syedaliabbas1",
+    linkedin: "https://www.linkedin.com/in/syed-ali--abbas/",
+    twitter: "https://twitter.com",
   },
 };
 
@@ -54,8 +54,8 @@ export const projects: Project[] = [
       { name: "PostgreSQL" },
       { name: "Full-Stack Development" },
     ],
-    link: "https://sapiensnova.com",
-    github: "#",
+    link: "https://sapiens-nova.vercel.app/",
+    github: "https://github.com/syedaliabbas1",
     carousel: [
       { image: "/projects/sapiens-nova-1.svg" },
       { image: "/projects/sapiens-nova-2.svg" },
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     dateRange: "2024",
   },
   {
-    name: "HP AI Document Understanding",
+    name: "Systems Engineering Intern at HP",
     description: "Production RAG pipeline for intelligent document processing",
     stack: "Designed and implemented a Retrieval-Augmented Generation pipeline for enterprise document understanding at Hewlett-Packard. Built with Python, LangChain, Llama models, and Hugging Face embeddings. The system features document ingestion, intelligent chunking, semantic retrieval, and response generation workflows. Containerized using Docker for reproducibility and deployment, with comprehensive evaluation strategies to assess model accuracy and grounding.",
     badges: [
@@ -77,8 +77,8 @@ export const projects: Project[] = [
       { name: "Llama Models" },
       { name: "AI/ML Engineering" },
     ],
-    link: "#",
-    github: "#",
+    link: "https://students.cs.ucl.ac.uk/2024/group30/",
+    github: "https://github.com/syedaliabbas1/HP_RAG_Project.git",
     carousel: [
       { image: "/projects/hp-rag-1.svg" },
       { image: "/projects/hp-rag-2.svg" },
@@ -124,7 +124,7 @@ export const projects: Project[] = [
       { name: "Python" },
     ],
     link: "#",
-    github: "#",
+    github: "https://github.com/syedaliabbas1/machine-learning-for-visual-computing.git",
     carousel: [
       { image: "/projects/ml-vision-1.svg" },
       { image: "/projects/ml-vision-2.svg" },

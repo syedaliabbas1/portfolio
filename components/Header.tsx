@@ -12,6 +12,7 @@ export default function Header() {
             alt="Picture of the author"
             width={500}
             height={500}
+            loading="eager"
             className="w-full"
           />
         </div>

@@ -15,7 +15,7 @@ export const personalInfo = {
 export const hero = {
   headline: "Designing intelligent systems at the intersection of AI, software engineering, and real-world impact.",
   subheadline: "MEng Computer Science student at UCL | AI Systems & Robotics | Full-Stack & ML Engineering | Research-Driven Development",
-  intro: "I am a Computer Science MEng student at University College London with a First Class average and a strong focus on AI systems engineering, applied machine learning, and robotics. I build end-to-end, production-ready platforms that combine rigorous engineering, modern AI techniques, and thoughtful user experience — from Retrieval-Augmented Generation systems to global EdTech platforms.",
+  intro: "I am a Computer Science MEng student at University College London with a First Class average and a strong focus on AI systems engineering, applied machine learning, and robotics. I build end-to-end, production-ready platforms that combine rigorous engineering, modern AI techniques, and thoughtful user experience from Retrieval-Augmented Generation systems to global EdTech platforms.",
 };
 
 export const about = {

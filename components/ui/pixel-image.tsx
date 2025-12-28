@@ -25,6 +25,7 @@ interface PixelImageProps {
   pixelFadeInDuration?: number // in ms
   maxAnimationDelay?: number // in ms
   colorRevealDelay?: number // in ms
+  shouldAnimate?: boolean
 }
 
 export const PixelImage = ({
@@ -35,6 +36,7 @@ export const PixelImage = ({
   maxAnimationDelay = 1200,
   colorRevealDelay = 1300,
   customGrid,
+  shouldAnimate = true,
 }: PixelImageProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const [showColor, setShowColor] = useState(false)
@@ -63,21 +65,33 @@ export const PixelImage = ({
 
   useEffect(() => {
     setIsMounted(true)
-    setIsVisible(true)
-    const colorTimeout = setTimeout(() => {
-      setShowColor(true)
-    }, colorRevealDelay)
+  }, [])
 
-    // Set animation complete after all animations finish
-    const completeTimeout = setTimeout(() => {
-      setAnimationComplete(true)
-    }, maxAnimationDelay + pixelFadeInDuration + colorRevealDelay + 500)
+  useEffect(() => {
+    let colorTimeout: NodeJS.Timeout
+    let completeTimeout: NodeJS.Timeout
+
+    if (shouldAnimate) {
+      setIsVisible(true)
+      colorTimeout = setTimeout(() => {
+        setShowColor(true)
+      }, colorRevealDelay)
+
+      // Set animation complete after all animations finish
+      completeTimeout = setTimeout(() => {
+        setAnimationComplete(true)
+      }, maxAnimationDelay + pixelFadeInDuration + colorRevealDelay + 500)
+    } else {
+      setIsVisible(false)
+      setShowColor(false)
+      setAnimationComplete(false)
+    }
 
     return () => {
       clearTimeout(colorTimeout)
       clearTimeout(completeTimeout)
     }
-  }, [colorRevealDelay, maxAnimationDelay, pixelFadeInDuration])
+  }, [shouldAnimate, colorRevealDelay, maxAnimationDelay, pixelFadeInDuration])
 
   const pieces = useMemo(() => {
     const total = rows * cols

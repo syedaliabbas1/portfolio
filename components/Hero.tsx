@@ -5,6 +5,7 @@ import { projects, hero, personalInfo } from "@/data/portfolio-data";
 import Bio from "@/components/Bio";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import TechMarquee from "@/components/sections/TechMarquee";
+import Gallery from "@/components/ui/gallery";
 
 export default function Hero() {
   return (
@@ -204,20 +205,7 @@ export default function Hero() {
           </div>
           <div className="bg-[#111] bg-opacity-80 backdrop-blur-xl py-6 sm:py-12 rounded-3xl mt-2">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-              <div className="scrollbar-hide mt-14 flex w-full snap-x snap-mandatory scroll-px-10 gap-10 overflow-x-scroll scroll-smooth px-10">
-                {project.carousel.map((image, index) => (
-                  <div
-                    key={index}
-                    className="md:2/3 relative aspect-[2/3] w-[90%] shrink-0 snap-start snap-always rounded-xl bg-orange-100 sm:w-[44%] md:w-[30%]"
-                  >
-                    <img
-                      src={image.image}
-                      alt="image"
-                      className="h-full w-full rounded-xl object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
+              <Gallery images={project.carousel.map((c) => c.image)} />
             </div>
           </div>
         </div>

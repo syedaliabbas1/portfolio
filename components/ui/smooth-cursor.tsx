@@ -107,7 +107,20 @@ export function SmoothCursor({
     damping: 35,
   })
 
+  const [isEnabled, setIsEnabled] = useState(false)
+
   useEffect(() => {
+    const checkScreen = () => {
+      setIsEnabled(window.innerWidth >= 768)
+    }
+    checkScreen()
+    window.addEventListener("resize", checkScreen)
+    return () => window.removeEventListener("resize", checkScreen)
+  }, [])
+
+  useEffect(() => {
+    if (!isEnabled) return
+
     const updateVelocity = (currentPos: Position) => {
       const currentTime = Date.now()
       const deltaTime = currentTime - lastUpdateTime.current
@@ -176,7 +189,9 @@ export function SmoothCursor({
       document.body.style.cursor = "auto"
       if (rafId) cancelAnimationFrame(rafId)
     }
-  }, [cursorX, cursorY, rotation, scale])
+  }, [cursorX, cursorY, rotation, scale, isEnabled])
+
+  if (!isEnabled) return null
 
   return (
     <motion.div

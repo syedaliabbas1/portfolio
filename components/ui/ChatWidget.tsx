@@ -207,8 +207,7 @@ export default function ChatWidget() {
   return (
     <>
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
+        <div
           className={cn(
             "fixed",
             "bottom-4 right-4",
@@ -216,19 +215,30 @@ export default function ChatWidget() {
             "md:bottom-8 md:right-8",
             "pb-[var(--safe-area-inset-bottom)]",
             "pr-[var(--safe-area-inset-right)]",
-            "h-14 w-14",
-            "md:h-12 md:w-12",
-            "flex items-center justify-center",
-            "rounded-full shadow-lg",
-            "bg-card",
-            "hover:opacity-80 hover:scale-110",
-            "transition-all focus:outline-none"
+            "flex flex-col items-center gap-2",
+            "z-50"
           )}
           style={{ zIndex: Z_INDEX.chatButton }}
-          aria-label="Open chat"
         >
-          <img src="/profile-picture.png" alt="Syed's Assistant" className="h-8 w-8 rounded-full" />
-        </button>
+          <div className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1.5 rounded-full shadow-lg animate-bounce">
+            Chat with A.L.I
+          </div>
+          <button
+            onClick={() => setIsOpen(true)}
+            className={cn(
+              "h-14 w-14",
+              "md:h-12 md:w-12",
+              "flex items-center justify-center",
+              "rounded-full shadow-lg",
+              "bg-card",
+              "hover:opacity-80 hover:scale-110",
+              "transition-all focus:outline-none"
+            )}
+            aria-label="Open chat"
+          >
+            <img src="/icon.png" alt="Syed's Assistant" className="h-full w-full rounded-full object-cover" />
+          </button>
+        </div>
       )}
 
       {isOpen && (
@@ -315,7 +325,7 @@ export default function ChatWidget() {
                       ) : (
                         <div className="space-y-2">
                           <div className="flex items-start gap-2">
-                            <img src="/profile-picture.png" alt="Syed's Assistant" className="h-4 w-4 mt-1 flex-shrink-0 rounded-full" />
+                            <img src="/icon.png" alt="Syed's Assistant" className="h-4 w-4 mt-1 flex-shrink-0 rounded-full" />
                             <div className="flex-1">
                               <div className="text-card-foreground text-sm leading-relaxed prose dark:prose-invert prose-sm max-w-none prose-p:text-card-foreground prose-headings:text-card-foreground prose-a:text-primary prose-strong:text-card-foreground prose-code:text-primary dark:prose-p:text-card-foreground dark:prose-headings:text-card-foreground dark:prose-a:text-primary dark:prose-strong:text-card-foreground dark:prose-code:text-primary">
                                 <MarkdownRenderer>{message.content}</MarkdownRenderer>
@@ -338,7 +348,7 @@ export default function ChatWidget() {
                   {isGenerating && messages[messages.length - 1]?.role === 'user' && (
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                        <img src="/profile-picture.png" alt="Syed's Assistant" className="h-4 w-4 animate-pulse rounded-full" />
+                        <img src="/icon.png" alt="Syed's Assistant" className="h-4 w-4 animate-pulse rounded-full" />
                         <div className="flex gap-1">
                           <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                           <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>

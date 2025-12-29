@@ -276,7 +276,7 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col min-h-0">
+          <div className="flex-1 flex flex-col min-h-0 relative">
             {isEmpty ? (
               <div className="flex-1 flex items-center justify-center overflow-y-auto p-4">
                 <div className="w-full max-w-2xl space-y-6">
@@ -353,12 +353,12 @@ export default function ChatWidget() {
             )}
 
             {!isEmpty && !shouldAutoScroll && (
-              <div className="absolute bottom-20 right-4 pointer-events-none">
+              <div className="absolute bottom-[85px] left-1/2 -translate-x-1/2 pointer-events-none z-10">
                 <Button
                   onClick={scrollToBottom}
                   size="icon"
                   variant="secondary"
-                  className="pointer-events-auto rounded-full shadow-lg animate-in fade-in-0 slide-in-from-bottom-2"
+                  className="pointer-events-auto rounded-full shadow-lg animate-in fade-in-0 slide-in-from-bottom-2 h-8 w-8"
                 >
                   <ArrowDown className="h-4 w-4" />
                 </Button>

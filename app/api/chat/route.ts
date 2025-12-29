@@ -83,14 +83,33 @@ User's Query: ${query}
       { role: 'user', content: query }
     ];
 
-    // 5. Generate Response with Groq (Streaming)
-    const completion = await groq.chat.completions.create({
-      messages: allMessages,
-      model: 'llama-3.3-70b-versatile', // or 'mixtral-8x7b-32768'
-      stream: true,
-      temperature: 0.6,
-      max_tokens: 1024,
-    });
+    // 5. Generate Response with Groq (Streaming) with Fallback Models
+    const models = ['llama-3.3-70b-versatile', 'llama-3.1-8b-instant', 'mixtral-8x7b-32768'];
+    let completion: any;
+    let lastError: any;
+
+    for (const model of models) {
+      try {
+        completion = await groq.chat.completions.create({
+          messages: allMessages,
+          model: model,
+          stream: true,
+          temperature: 0.6,
+          max_tokens: 1024,
+        });
+        // If successful, break the loop
+        break;
+      } catch (err) {
+        console.warn(`Model ${model} failed:`, err);
+        lastError = err;
+        // Continue to the next model
+        continue;
+      }
+    }
+
+    if (!completion) {
+      throw lastError || new Error('All models failed to respond.');
+    }
 
     // 6. Return Streaming Response
     const stream = new ReadableStream({

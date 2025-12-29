@@ -223,21 +223,29 @@ export default function ChatWidget() {
           <div className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1.5 rounded-full shadow-lg animate-bounce">
             Chat with A.L.I
           </div>
-          <button
-            onClick={() => setIsOpen(true)}
-            className={cn(
-              "h-14 w-14",
-              "md:h-12 md:w-12",
-              "flex items-center justify-center",
-              "rounded-full shadow-lg",
-              "bg-card",
-              "hover:opacity-80 hover:scale-110",
-              "transition-all focus:outline-none"
-            )}
-            aria-label="Open chat"
-          >
-            <img src="/icon.png" alt="Syed's Assistant" className="h-full w-full rounded-full object-cover" />
-          </button>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-tr from-[#4285F4] via-[#9147FF] to-[#FF4B91] rounded-full blur-sm opacity-70 group-hover:opacity-100 transition duration-500"></div>
+            <button
+              onClick={() => setIsOpen(true)}
+              className={cn(
+                "relative",
+                "h-14 w-14",
+                "md:h-12 md:w-12",
+                "flex items-center justify-center",
+                "rounded-full shadow-xl",
+                "bg-card",
+                "hover:scale-110",
+                "transition-all focus:outline-none"
+              )}
+              aria-label="Open chat"
+            >
+              <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-tr from-[#4285F4] via-[#9147FF] to-[#FF4B91]">
+                <div className="h-full w-full rounded-full bg-card flex items-center justify-center overflow-hidden">
+                  <img src="/icon.png" alt="Syed's Assistant" className="h-full w-full object-cover" />
+                </div>
+              </div>
+            </button>
+          </div>
         </div>
       )}
 

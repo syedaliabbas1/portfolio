@@ -62,6 +62,7 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		animation: {
+  			shine: 'shine var(--duration) infinite linear',
   			marquee: 'marquee 25s linear infinite',
   			marquee2: 'marquee2 25s linear infinite',
   			'blink-cursor': 'blink-cursor 1s step-end infinite',
@@ -69,6 +70,17 @@ module.exports = {
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
   		keyframes: {
+  			shine: {
+  				'0%': {
+  					'background-position': '0% 0%'
+  				},
+  				'50%': {
+  					'background-position': '100% 100%'
+  				},
+  				to: {
+  					'background-position': '0% 0%'
+  				}
+  			},
   			'blink-cursor': {
   				'0%, 100%': {
   					opacity: '1'

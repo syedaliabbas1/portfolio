@@ -23,6 +23,8 @@ const SUGGESTED_PROMPTS = [
 
 const MAX_INPUT_LENGTH = 500;
 
+import { ShineBorder } from '@/components/ui/shine-border';
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [messages, setMessages] = React.useState<Message[]>([]);
@@ -255,7 +257,9 @@ export default function ChatWidget() {
           className={cn(
             "fixed flex flex-col",
             "shadow-2xl border overflow-hidden",
-            "p-0 gap-0 bg-card",
+            "p-0 gap-0",
+            // Force dark mode for the widget
+            "dark bg-card border-border",
             "animate-[slideInFromBottom_0.5s_ease-out_forwards]",
             // Mobile: full screen
             "inset-0 rounded-none",
@@ -277,149 +281,153 @@ export default function ChatWidget() {
           }}
           onWheel={handleWheel}
         >
-          <div className={cn(
-            "flex-shrink-0 flex items-center justify-between border-b p-4",
-            "pt-[calc(1rem+var(--safe-area-inset-top))]",
-            "sm:pt-4"
-          )}>
-            <div className="flex items-center gap-2">
-              <h3 className="font-normal text-base md:text-lg text-card-foreground">Syed's Assistant</h3>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="bg-transparent border-none hover:opacity-80 transition-all cursor-pointer p-0"
-              aria-label="Close chat"
-            >
-              <ChevronDown className="h-5 w-5 text-primary" strokeWidth={2} />
-            </button>
-          </div>
-
-          <div className="flex-1 flex flex-col min-h-0 relative">
-            {isEmpty ? (
-              <div className="flex-1 flex items-center justify-center overflow-y-auto p-4">
-                <div className="w-full max-w-2xl space-y-6">
-                  <div className="text-center space-y-3">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-card-foreground">
-                      How can I help you?
-                    </h2>
-                    <p className="text-muted-foreground text-sm">
-                      Ask me about Syed's projects and skills
-                    </p>
-                  </div>
-                  <PromptSuggestions
-                    label=""
-                    append={append}
-                    suggestions={SUGGESTED_PROMPTS}
-                  />
-                </div>
+          <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} className="pointer-events-none" />
+          
+          <div className="relative z-10 flex flex-col h-full w-full">
+            <div className={cn(
+              "flex-shrink-0 flex items-center justify-between border-b p-4",
+              "pt-[calc(1rem+var(--safe-area-inset-top))]",
+              "sm:pt-4"
+            )}>
+              <div className="flex items-center gap-2">
+                <h3 className="font-normal text-base md:text-lg text-card-foreground">Syed's Assistant</h3>
               </div>
-            ) : (
-              <div className="flex-1 overflow-y-auto relative" ref={containerRef} onScroll={handleScroll} onTouchStart={handleTouchStart}>
-                <div className="px-4 py-6 space-y-6 max-w-2xl mx-auto">
-                  {messages.map((message) => (
-                    <div key={message.id} className="space-y-2">
-                      {message.role === 'user' ? (
-                        <div className="flex flex-col items-end">
-                          <div className={cn(
-                            "bg-program-cornfield text-foreground rounded-lg p-3 text-sm",
-                            "max-w-xs",
-                            "sm:max-w-sm",
-                            "md:max-w-md",
-                            "break-words"
-                          )}>
-                            {message.content}
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="space-y-2">
-                          <div className="flex items-start gap-2">
-                            <img src="/icon.png" alt="Syed's Assistant" className="h-4 w-4 mt-1 flex-shrink-0 rounded-full" />
-                            <div className="flex-1">
-                              <div className="text-card-foreground text-sm leading-relaxed prose dark:prose-invert prose-sm max-w-none prose-p:text-card-foreground prose-headings:text-card-foreground prose-a:text-primary prose-strong:text-card-foreground prose-code:text-primary dark:prose-p:text-card-foreground dark:prose-headings:text-card-foreground dark:prose-a:text-primary dark:prose-strong:text-card-foreground dark:prose-code:text-primary">
-                                <MarkdownRenderer>{message.content}</MarkdownRenderer>
-                              </div>
-                              {!isGenerating && (
-                                <div className="flex justify-start mt-2">
-                                  <CopyButton
-                                    content={message.content}
-                                    copyMessage="Copied response to clipboard"
-                                  />
-                                </div>
-                              )}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="bg-transparent border-none hover:opacity-80 transition-all cursor-pointer p-0"
+                aria-label="Close chat"
+              >
+                <ChevronDown className="h-5 w-5 text-primary" strokeWidth={2} />
+              </button>
+            </div>
+
+            <div className="flex-1 flex flex-col min-h-0 relative">
+              {isEmpty ? (
+                <div className="flex-1 flex items-center justify-center overflow-y-auto p-4">
+                  <div className="w-full max-w-2xl space-y-6">
+                    <div className="text-center space-y-3">
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-card-foreground">
+                        How can I help you?
+                      </h2>
+                      <p className="text-muted-foreground text-sm">
+                        Ask me about Syed's projects and skills
+                      </p>
+                    </div>
+                    <PromptSuggestions
+                      label=""
+                      append={append}
+                      suggestions={SUGGESTED_PROMPTS}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="flex-1 overflow-y-auto relative" ref={containerRef} onScroll={handleScroll} onTouchStart={handleTouchStart}>
+                  <div className="px-4 py-6 space-y-6 max-w-2xl mx-auto">
+                    {messages.map((message) => (
+                      <div key={message.id} className="space-y-2">
+                        {message.role === 'user' ? (
+                          <div className="flex flex-col items-end">
+                            <div className={cn(
+                              "bg-primary text-primary-foreground rounded-lg p-3 text-sm",
+                              "max-w-xs",
+                              "sm:max-w-sm",
+                              "md:max-w-md",
+                              "break-words"
+                            )}>
+                              {message.content}
                             </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-
-                  {isGenerating && messages[messages.length - 1]?.role === 'user' && (
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                        <img src="/icon.png" alt="Syed's Assistant" className="h-4 w-4 animate-pulse rounded-full" />
-                        <div className="flex gap-1">
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                          <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-                        </div>
-                        <span>Thinking...</span>
+                        ) : (
+                          <div className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <img src="/icon.png" alt="Syed's Assistant" className="h-4 w-4 mt-1 flex-shrink-0 rounded-full" />
+                              <div className="flex-1">
+                                <div className="text-card-foreground text-sm leading-relaxed prose dark:prose-invert prose-sm max-w-none">
+                                  <MarkdownRenderer>{message.content}</MarkdownRenderer>
+                                </div>
+                                {!isGenerating && (
+                                  <div className="flex justify-start mt-2">
+                                    <CopyButton
+                                      content={message.content}
+                                      copyMessage="Copied response to clipboard"
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+                    ))}
 
-            {!isEmpty && !shouldAutoScroll && (
-              <div className="absolute bottom-[85px] left-1/2 -translate-x-1/2 pointer-events-none z-10">
-                <Button
-                  onClick={scrollToBottom}
-                  size="icon"
-                  variant="secondary"
-                  className="pointer-events-auto rounded-full shadow-lg animate-in fade-in-0 slide-in-from-bottom-2 h-8 w-8"
-                >
-                  <ArrowDown className="h-4 w-4" />
-                </Button>
-              </div>
-            )}
-
-            <div className={cn(
-              "flex-shrink-0 p-4 border-t",
-              "pb-[calc(1rem+var(--safe-area-inset-bottom))]",
-              "sm:pb-4"
-            )}>
-              <form onSubmit={handleSubmit} className="relative">
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-end gap-2 bg-muted border rounded-xl p-3 focus-within:ring-1 focus-within:ring-primary/30 transition-all">
-                    <div className="flex-1 min-w-0">
-                      <textarea
-                        ref={textareaRef}
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Ask anything..."
-                        disabled={isGenerating}
-                        rows={1}
-                        maxLength={MAX_INPUT_LENGTH}
-                        className="w-full bg-transparent text-foreground placeholder:text-muted-foreground text-base outline-none resize-none min-h-[24px] max-h-24 overflow-y-auto break-words [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-                        style={{ fieldSizing: 'content' }}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={isGenerating || !input.trim()}
-                      className="flex-shrink-0 bg-program-cornfield hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed text-foreground rounded-full p-2 transition-opacity self-end"
-                    >
-                      <Send className="h-4 w-4" />
-                    </button>
+                    {isGenerating && messages[messages.length - 1]?.role === 'user' && (
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                          <img src="/icon.png" alt="Syed's Assistant" className="h-4 w-4 animate-pulse rounded-full" />
+                          <div className="flex gap-1">
+                            <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                          </div>
+                          <span>Thinking...</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  {input.length > MAX_INPUT_LENGTH * 0.9 && (
-                    <div className="text-xs text-muted-foreground text-right">
-                      {input.length}/{MAX_INPUT_LENGTH}
-                    </div>
-                  )}
                 </div>
-              </form>
+              )}
+
+              {!isEmpty && !shouldAutoScroll && (
+                <div className="absolute bottom-[85px] left-1/2 -translate-x-1/2 pointer-events-none z-10">
+                  <Button
+                    onClick={scrollToBottom}
+                    size="icon"
+                    variant="secondary"
+                    className="pointer-events-auto rounded-full shadow-lg animate-in fade-in-0 slide-in-from-bottom-2 h-8 w-8"
+                  >
+                    <ArrowDown className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+
+              <div className={cn(
+                "flex-shrink-0 p-4 border-t",
+                "pb-[calc(1rem+var(--safe-area-inset-bottom))]",
+                "sm:pb-4"
+              )}>
+                <form onSubmit={handleSubmit} className="relative">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-end gap-2 bg-muted border rounded-xl p-3 focus-within:ring-1 focus-within:ring-primary/30 transition-all">
+                      <div className="flex-1 min-w-0">
+                        <textarea
+                          ref={textareaRef}
+                          value={input}
+                          onChange={(e) => setInput(e.target.value)}
+                          onKeyDown={handleKeyDown}
+                          placeholder="Ask anything..."
+                          disabled={isGenerating}
+                          rows={1}
+                          maxLength={MAX_INPUT_LENGTH}
+                          className="w-full bg-transparent text-foreground placeholder:text-muted-foreground text-base outline-none resize-none min-h-[24px] max-h-24 overflow-y-auto break-words [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                          style={{ fieldSizing: 'content' }}
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={isGenerating || !input.trim()}
+                        className="flex-shrink-0 bg-primary hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-primary-foreground rounded-full p-2 transition-opacity self-end"
+                      >
+                        <Send className="h-4 w-4" />
+                      </button>
+                    </div>
+                    {input.length > MAX_INPUT_LENGTH * 0.9 && (
+                      <div className="text-xs text-muted-foreground text-right">
+                        {input.length}/{MAX_INPUT_LENGTH}
+                      </div>
+                    )}
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </Card>

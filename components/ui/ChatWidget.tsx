@@ -261,10 +261,10 @@ export default function ChatWidget() {
             // Force dark mode for the widgets
             "dark bg-card border-border",
             "animate-[slideInFromBottom_0.5s_ease-out_forwards]",
-            // Mobile: full screen
-            "inset-0 rounded-none",
+            // Mobile: full screen with proper constraints
+            "top-0 left-0 right-0 bottom-0 w-full h-full rounded-none",
             // Small: with padding
-            "sm:inset-4 sm:rounded-2xl sm:max-w-[90vw] sm:max-h-[calc(100vh-2rem)]",
+            "sm:inset-4 sm:rounded-2xl sm:max-w-[90vw] sm:max-h-[calc(100vh-2rem)] sm:w-auto sm:h-auto sm:top-4 sm:left-4 sm:right-4 sm:bottom-4",
             // Desktop: positioned bottom-right (reset inset, use inline styles)
             "md:[inset:unset] md:w-96 md:h-[600px] md:max-h-[calc(100vh-4rem)]",
             "lg:h-[650px] lg:max-h-[calc(100vh-5rem)]",
@@ -277,20 +277,29 @@ export default function ChatWidget() {
               left: 'auto',
               bottom: '2rem',
               right: '2rem'
-            } : {})
+            } : {
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0
+            })
           }}
           onWheel={handleWheel}
         >
           <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} className="pointer-events-none" />
           
-          <div className="relative z-10 flex flex-col h-full w-full">
+          <div className="relative z-10 flex flex-col h-full w-full overflow-hidden">
             <div className={cn(
-              "flex-shrink-0 flex items-center justify-between border-b p-4",
-              "pt-[calc(1rem+var(--safe-area-inset-top))]",
-              "sm:pt-4"
+              "flex-shrink-0 flex items-center justify-between border-b p-4"
             )}>
-              <div className="flex items-center gap-2">
-                <h3 className="font-normal text-base md:text-lg text-card-foreground">Syed's Assistant</h3>
+              <div className="flex items-center gap-3">
+                <img src="/icon.png" alt="Syed" className="h-10 w-10 rounded-full object-cover flex-shrink-0" />
+                <div className="flex flex-col">
+                  <h3 className="font-semibold text-base text-card-foreground">Syed's Assistant</h3>
+                  {isGenerating && (
+                    <span className="text-xs text-muted-foreground">Typing...</span>
+                  )}
+                </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -322,17 +331,17 @@ export default function ChatWidget() {
                 </div>
               ) : (
                 <div className="flex-1 overflow-y-auto relative" ref={containerRef} onScroll={handleScroll} onTouchStart={handleTouchStart}>
-                  <div className="px-4 py-6 space-y-6 max-w-2xl mx-auto">
+                  <div className="px-4 py-6 space-y-6 w-full max-w-full md:max-w-2xl md:mx-auto">
                     {messages.map((message) => (
                       <div key={message.id} className="space-y-2">
                         {message.role === 'user' ? (
                           <div className="flex flex-col items-end">
                             <div className={cn(
                               "bg-primary text-primary-foreground rounded-lg p-3 text-sm",
-                              "max-w-xs",
+                              "max-w-[85%]",
                               "sm:max-w-sm",
                               "md:max-w-md",
-                              "break-words"
+                              "break-words overflow-wrap-anywhere"
                             )}>
                               {message.content}
                             </div>
@@ -341,7 +350,7 @@ export default function ChatWidget() {
                           <div className="space-y-2">
                             <div className="flex items-start gap-2">
                               <img src="/icon.png" alt="Syed's Assistant" className="h-4 w-4 mt-1 flex-shrink-0 rounded-full" />
-                              <div className="flex-1">
+                              <div className="flex-1 min-w-0 overflow-hidden">
                                 <div className="text-card-foreground text-sm leading-relaxed prose dark:prose-invert prose-sm max-w-none">
                                   <MarkdownRenderer>{message.content}</MarkdownRenderer>
                                 </div>
@@ -391,9 +400,7 @@ export default function ChatWidget() {
               )}
 
               <div className={cn(
-                "flex-shrink-0 p-4 border-t",
-                "pb-[calc(1rem+var(--safe-area-inset-bottom))]",
-                "sm:pb-4"
+                "flex-shrink-0 p-4 border-t"
               )}>
                 <form onSubmit={handleSubmit} className="relative">
                   <div className="flex flex-col gap-2">

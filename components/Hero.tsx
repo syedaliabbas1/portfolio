@@ -6,6 +6,8 @@ import Bio from "@/components/Bio";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import TechMarquee from "@/components/sections/TechMarquee";
 import Gallery from "@/components/ui/gallery";
+import { Button } from "@/components/Resume-Button";
+import { Download } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -13,20 +15,51 @@ export default function Hero() {
       {/* Welcome Card */}
       <div className="bg-[#111] bg-opacity-80 backdrop-blur-xl py-6 sm:py-12 rounded-3xl">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <p className="text-base font-semibold leading-7 text-[#999]">
-              Hello there!
-            </p>
-            <div className="relative mt-2">
-              <h2 className="invisible text-4xl font-bold tracking-tight sm:text-6xl leading-[5rem] whitespace-pre-wrap">
-                {"I'm Syed Ali Abbas, a\nComputer Science\nstudent at UCL"}
-              </h2>
-              <TypingAnimation
-                as="h2"
-                className="absolute inset-0 text-4xl font-bold tracking-tight text-white sm:text-6xl whitespace-pre-wrap"
-              >
-                {"I'm Syed Ali Abbas, a\nComputer Science\nstudent at UCL"}
-              </TypingAnimation>
+          <div className="relative">
+            <div className="mx-auto max-w-2xl lg:mx-0">
+              <p className="text-base font-semibold leading-7 text-[#999]">
+                Hello there!
+              </p>
+              <div className="relative mt-2">
+                <h2 className="invisible text-4xl font-bold tracking-tight sm:text-6xl leading-[5rem] whitespace-pre-wrap">
+                  {"I'm Syed Ali Abbas, a\nComputer Science\nstudent at UCL"}
+                </h2>
+                <TypingAnimation
+                  as="h2"
+                  className="absolute inset-0 text-4xl font-bold tracking-tight text-white sm:text-6xl whitespace-pre-wrap"
+                >
+                  {"I'm Syed Ali Abbas, a\nComputer Science\nstudent at UCL"}
+                </TypingAnimation>
+              </div>
+            </div>
+            <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-0">
+              <a href="/resume.pdf" download="Syed_Ali_Abbas_Resume.pdf">
+                <Button
+                  variant="outline"
+                  effect="ringHover"
+                  size="lg"
+                  icon={Download}
+                  iconPlacement="left"
+                  className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30 backdrop-blur-sm font-semibold"
+                >
+                  Download Resume
+                </Button>
+              </a>
+            </div>
+            {/* Mobile button - below text */}
+            <div className="mt-8 lg:hidden">
+              <a href="/resume.pdf" download="Syed_Ali_Abbas_Resume.pdf">
+                <Button
+                  variant="outline"
+                  effect="ringHover"
+                  size="lg"
+                  icon={Download}
+                  iconPlacement="left"
+                  className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30 backdrop-blur-sm font-semibold w-full sm:w-auto"
+                >
+                  Download Resume
+                </Button>
+              </a>
             </div>
           </div>
         </div>

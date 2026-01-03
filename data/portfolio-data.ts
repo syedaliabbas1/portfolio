@@ -8,6 +8,7 @@ export const personalInfo = {
   social: {
     github: "https://github.com/syedaliabbas1",
     linkedin: "https://www.linkedin.com/in/syed-ali--abbas/",
+    instagram: "https://www.instagram.com/_syedaliabbas__/",
     twitter: "https://twitter.com",
   },
 };

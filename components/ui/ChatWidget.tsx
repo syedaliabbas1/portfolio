@@ -258,7 +258,7 @@ export default function ChatWidget() {
             "fixed flex flex-col",
             "shadow-2xl border overflow-hidden",
             "p-0 gap-0",
-            // Force dark mode for the widget
+            // Force dark mode for the widgets
             "dark bg-card border-border",
             "animate-[slideInFromBottom_0.5s_ease-out_forwards]",
             // Mobile: full screen
